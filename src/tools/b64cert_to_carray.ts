@@ -41,7 +41,7 @@ v69vdlqZktPjIPQSerjqelVLiJ/mRk3epDyv0RbVAkHFH0HDD9OLaHxC4jCjytTM
 ezl9bmFyeUT88RhxB4IVbbFVXYv7HQU7rqjZMfz8HJc=`);
 
 
-function toHex(v) {
+function toHex(v: number) {
     return '0x' + (('00' + v.toString(16).toUpperCase()).substr(-2));
 }
 
