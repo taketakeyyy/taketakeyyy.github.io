@@ -9,10 +9,13 @@
 <body>
 <a href="/index.html">HOME</a>
 <br>
+<h1>Base64変換された証明書をCの配列に変換</h1>
+<p>Base64エンコードされた文字列をデコードし、デコードしたバイナリをCの配列にします。</p>
+<hr>
 <div>
     <div>-----BEGIN CERTIFICATE-----</div>
     <div>
-        <textarea id="js_textarea_cert" rows="40" cols="40">
+<textarea id="js_textarea_cert" rows="30" cols="80">
 MIIDdTCCAl2gAwIBAgILBAAAAAABFUtaw5QwDQYJKoZIhvcNAQEFBQAwVzELMAkGA1UEBhMCQkUx
 GTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExEDAOBgNVBAsTB1Jvb3QgQ0ExGzAZBgNVBAMTEkds
 b2JhbFNpZ24gUm9vdCBDQTAeFw05ODA5MDExMjAwMDBaFw0yODAxMjgxMjAwMDBaMFcxCzAJBgNV
@@ -29,7 +32,7 @@ Y1Ub8rrvrTnhQ7k4o+YviiY776BQVvnGCv04zcQLcFGUl5gE38NflNUVyRRBnMRddWQVDf9VMOyG
 j/8N7yy5Y0b2qvzfvGn9LhJIZJrglfCm7ymPAbEVtQwdpf5pLGkkeB6zpxxxYu7KyJesF12KwvhH
 hm4qxFYxldBniYUr+WymXUadDKqC5JlR3XC321Y9YeRq4VzW9v493kHMB65jUr9TU/Qr6cf9tveC
 X4XSQRjbgbMEHMUfpIBvFSDJ3gyICh3WZlXi/EjJKSZp4A==
-        </textarea>
+</textarea>
     </div>
     <div>-----END CERTIFICATE-----</div>
 </div>
@@ -38,7 +41,7 @@ X4XSQRjbgbMEHMUfpIBvFSDJ3gyICh3WZlXi/EjJKSZp4A==
 </div>
 <div>
     <div>
-        <textarea name="js_carray" rows="40" cols="40">
+        <textarea id="js_textarea_carray" rows="30" cols="80">
         </textarea>
     </div>
 </div>
