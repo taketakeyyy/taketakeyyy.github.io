@@ -6,7 +6,8 @@ const dist = __dirname + "/dist";
 
 module.exports = {
     entry: {  // ビルドの起点となるファイルの指定
-        b64cert_to_carray: src + '/tools/b64cert_to_carray.ts'
+        b64cert_to_carray: src + '/tools/b64cert_to_carray.ts',
+        bincert_to_carray: src + '/tools/bincert_to_carray.ts'
     },
     output: {  // ビルド結果の出力場所
         path: path.join(dist + "/tools"),

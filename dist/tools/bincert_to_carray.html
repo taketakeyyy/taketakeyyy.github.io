@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="bincert_to_carray.js"></script>
+    <title>bincert_to_carray</title>
+</head>
+<body>
+    <a href="/index.html">HOME</a>
+    <br>
+    <h1>証明書をC言語の配列に変換する</h1>
+    <p>証明書の中身をバイナリのバイト列とみなし、それをCの配列にします。</p>
+    <div>
+    <input type="file" accept=".crt, .cer" name="certfile" id="js_file_uploaded">
+    </div>
+    <div>
+    <input type="submit" value="変換" id="js_btn_convert">
+    </div>
+    <div>
+<textarea id="js_textarea_carray" rows="30" cols="80">
+</textarea>
+        </div>
+
+</body>
+</html>
