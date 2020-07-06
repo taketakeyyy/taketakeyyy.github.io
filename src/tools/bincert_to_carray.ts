@@ -56,7 +56,7 @@ function convert() {
         (document.getElementById("js_textarea_carray")! as HTMLTextAreaElement).value = ans;
     }
 
-    reader.readAsText(files[0], "utf-8");  // ファイルの読み込みを実行
+    reader.readAsBinaryString(files[0]);  // ファイルの読み込みを実行
 }
 
 
