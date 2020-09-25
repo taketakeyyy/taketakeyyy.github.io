@@ -9,7 +9,9 @@ function to_carray(str: string) {
     const decoded = Buffer.from(str, "ascii");
 
     const NUM = 12;
-    let ans = "unsigned char cert[] = {\n";
+    let ans = "";
+    ans += "unsigned short cert_len = "+decoded.length+";\n";
+    ans += "unsigned char cert[] = {\n";
 
     let line = "";
     for (let i=0; i<decoded.length; i++) {
@@ -31,7 +33,6 @@ function to_carray(str: string) {
     ans += line.slice(0,-1);
     ans += "\n";
     ans += "};\n";
-    ans += "unsigned int cert_len = "+decoded.length+";\n";
 
     return ans;
 }

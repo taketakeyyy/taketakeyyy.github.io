@@ -7,7 +7,9 @@ function to_carray(encoded: string) {
     const decoded = Buffer.from(encoded, 'base64');
 
     const NUM = 12;
-    let ans = "unsigned char cert[] = {\n";
+    let ans = "";
+    ans += "const unsigned short cert_len = "+decoded.length+";\n";
+    ans += "const unsigned char cert[] = {\n";
 
     let line = "";
     for (let i=0; i<decoded.length; i++) {
@@ -29,7 +31,6 @@ function to_carray(encoded: string) {
     ans += line.slice(0,-1);
     ans += "\n";
     ans += "};\n";
-    ans += "unsigned int cert_len = "+decoded.length+";\n";
 
     return ans;
 }
