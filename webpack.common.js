@@ -1,7 +1,7 @@
 const path = require("path");
 const WebpackMerge = require("webpack-merge");
 const src = __dirname + "/src";
-const dist = __dirname + "/dist";
+const dist = __dirname + "/docs";
 
 
 module.exports = {
