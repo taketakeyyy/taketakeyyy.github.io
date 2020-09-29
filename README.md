@@ -6,6 +6,15 @@
 
 * `npm ci`をする。
 
+## ブランチの運用
+`publish`ブランチが公開用。`/docs`をGitHub Pagesのルートディレクトリにしている。
+
+`develop`ブランチが開発用。
+
+`publish`ブランチは`develop`ブランチからのプルリクエストをマージする。
+
+`publish`ブランチは`/docs`ディレクトリ以下のファイルしかマージしないように`.gitignore`と`.gitattributes`で制御しているので、開発用のソースファイルはマージしない。
+
 
 ## 方針
 
