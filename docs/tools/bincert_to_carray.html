@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="bincert_to_carray.js"></script>
+    <title>bincert_to_carray</title>
+</head>
+<body>
+    <a href="/index.html">HOME</a>
+    <br>
+    <h1>DER形式の証明書をC言語の配列に変換</h1>
+    <p>DER形式の証明書の中身をバイナリのバイト列とみなし、それをCの配列にします。</p>
+    <div class="bincert-content">
+        <div>
+            <input type="file" accept=".crt, .cer" name="certfile" id="js_file_uploaded">
+        </div>
+        <div>
+            <input type="submit" value="変換" id="js_btn_convert">
+        </div>
+        <div>
+<textarea readonly id="js_textarea_carray" class="bincert-content__textarea-carray" rows="30" cols="80">
+</textarea>
+        </div>
+    </div>
+</body>
+</html>
