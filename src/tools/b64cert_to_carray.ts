@@ -1,3 +1,5 @@
+import './b64cert_to_carray.scss';
+
 function toHex(v: number) {
     return '0x' + (('00' + v.toString(16).toUpperCase()).substr(-2));
 }

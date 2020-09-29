@@ -1,3 +1,4 @@
+import './bincert_to_carray.scss';
 import { InputFileSystem } from "webpack";
 
 function toHex(v: number) {
@@ -10,8 +11,8 @@ function to_carray(str: string) {
 
     const NUM = 12;
     let ans = "";
-    ans += "unsigned short cert_len = "+decoded.length+";\n";
-    ans += "unsigned char cert[] = {\n";
+    ans += "const unsigned short cert_len = "+decoded.length+";\n";
+    ans += "const unsigned char cert[] = {\n";
 
     let line = "";
     for (let i=0; i<decoded.length; i++) {

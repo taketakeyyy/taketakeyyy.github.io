@@ -22,12 +22,15 @@ module.exports = {
     },
     module: {
         rules: [
-            {
-                // 拡張子が.tsで終わるファイルに対して、TypeScriptコンパイラを適用する
+            {   // 拡張子が.tsで終わるファイルに対して、TypeScriptコンパイラを適用する
                 test:/\.ts$/,
                 use: {
                     loader:'ts-loader'
                 }
+            },
+            {   // 拡張子.scssに対して、sass-loader等を適用する
+                test: /\.scss/,
+                use: ["style-loader", "css-loader", "sass-loader"]  // 後ろから順に適用される
             }
         ]
     }
