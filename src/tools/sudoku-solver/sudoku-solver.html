@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!--Bootstrap Icon-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <title>takeyの数独ソルバー</title>
+</head>
+<body>
+    <h1>takeyの数独ソルバー</h1>
+    <div>
+        <ul>
+            <li>数独（ナンプレ・ナンバープレイス）のソルバーです</li>
+            <li>複数解ある場合、ひとつの解を出力します</li>
+        </ul>
+    </div>
+        <div>
+            <select id="id_template-input">
+                <option value="empty">全空白</option>
+                <option value="sample1">サンプル1</option>
+                <option value="sample2">サンプル2</option>
+                <option value="kyo_q1">ナンプレ京 Q1</option>
+                <option value="kyo_q100">ナンプレ京 Q100</option>
+                <option value="inkala_2010" selected>世界で最も難しい数独2010（Arto Inkala作）</option>
+                <option value="inkala_2012">世界で最も難しい数独2012（Arto Inkala作）</option>
+                <option value="wata2013_0">Hiroshi Watanabeがスパコンで作成した問題（2013_0）</option>
+                <option value="wata2013_03_12">Hiroshi Watanabeがスパコンで作成した問題（2013_03_12）</option>
+                <option value="wata2013_03_13">Hiroshi Watanabeがスパコンで作成した問題（2013_03_13）</option>
+                <option value="wata2013_03_22">Hiroshi Watanabeがスパコンで作成した問題（2013_03_22）</option>
+            </select>
+        </div>
+    <div id="id_input-grid" class="main-content">
+    <div class="main-content__input">
+        <table class="grid-table">
+            <tbody>
+                <tr>
+                    <td><input type="number" id="id_input0" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input1" class="number-input" min="1" max="9"></td>
+                    <td class="box-border-right"><input type="number" id="id_input2" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input3" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input4" class="number-input" min="1" max="9"></td>
+                    <td class="box-border-right"><input type="number" id="id_input5" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input6" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input7" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input8" class="number-input" min="1" max="9"></td>
+                </tr>
+                <tr>
+                    <td><input type="number" id="id_input9" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input10" class="number-input" min="1" max="9"></td>
+                    <td class="box-border-right"><input type="number" id="id_input11" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input12" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input13" class="number-input" min="1" max="9"></td>
+                    <td class="box-border-right"><input type="number" id="id_input14" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input15" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input16" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input17" class="number-input" min="1" max="9"></td>
+                </tr>
+                <tr class="box-border-bottom">
+                    <td><input type="number" id="id_input18" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input19" class="number-input" min="1" max="9"></td>
+                    <td class="box-border-right"><input type="number" id="id_input20" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input21" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input22" class="number-input" min="1" max="9"></td>
+                    <td class="box-border-right"><input type="number" id="id_input23" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input24" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input25" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input26" class="number-input" min="1" max="9"></td>
+                </tr>
+                <tr>
+                    <td><input type="number" id="id_input27" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input28" class="number-input" min="1" max="9"></td>
+                    <td class="box-border-right"><input type="number" id="id_input29" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input30" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input31" class="number-input" min="1" max="9"></td>
+                    <td class="box-border-right"><input type="number" id="id_input32" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input33" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input34" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input35" class="number-input" min="1" max="9"></td>
+                </tr>
+                <tr>
+                    <td><input type="number" id="id_input36" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input37" class="number-input" min="1" max="9"></td>
+                    <td class="box-border-right"><input type="number" id="id_input38" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input39" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input40" class="number-input" min="1" max="9"></td>
+                    <td class="box-border-right"><input type="number" id="id_input41" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input42" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input43" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input44" class="number-input" min="1" max="9"></td>
+                </tr>
+                <tr class="box-border-bottom">
+                    <td><input type="number" id="id_input45" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input46" class="number-input" min="1" max="9"></td>
+                    <td class="box-border-right"><input type="number" id="id_input47" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input48" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input49" class="number-input" min="1" max="9"></td>
+                    <td class="box-border-right"><input type="number" id="id_input50" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input51" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input52" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input53" class="number-input" min="1" max="9"></td>
+                </tr>
+                <tr>
+                    <td><input type="number" id="id_input54" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input55" class="number-input" min="1" max="9"></td>
+                    <td class="box-border-right"><input type="number" id="id_input56" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input57" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input58" class="number-input" min="1" max="9"></td>
+                    <td class="box-border-right"><input type="number" id="id_input59" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input60" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input61" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input62" class="number-input" min="1" max="9"></td>
+                </tr>
+                <tr>
+                    <td><input type="number" id="id_input63" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input64" class="number-input" min="1" max="9"></td>
+                    <td class="box-border-right"><input type="number" id="id_input65" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input66" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input67" class="number-input" min="1" max="9"></td>
+                    <td class="box-border-right"><input type="number" id="id_input68" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input69" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input70" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input71" class="number-input" min="1" max="9"></td>
+                </tr>
+                <tr>
+                    <td><input type="number" id="id_input72" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input73" class="number-input" min="1" max="9"></td>
+                    <td class="box-border-right"><input type="number" id="id_input74" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input75" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input76" class="number-input" min="1" max="9"></td>
+                    <td class="box-border-right"><input type="number" id="id_input77" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input78" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input79" class="number-input" min="1" max="9"></td>
+                    <td><input type="number" id="id_input80" class="number-input" min="1" max="9"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="main-content__input__note" id="id_input-note"></div>
+    </div>
+
+    <div class="main-content__btn-area">
+        <div class="right-arrow"></div>
+        <button id="id_btn-solve" class="btn btn-solve">解く</button>
+    </div>
+
+    <div class="main-content__output">
+        <table class="grid-table">
+            <tbody>
+                <tr>
+                    <td><input type="number" id="id_output0" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output1" class="number-output" min="1" max="9" readonly></td>
+                    <td class="box-border-right"><input type="number" id="id_output2" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output3" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output4" class="number-output" min="1" max="9" readonly></td>
+                    <td class="box-border-right"><input type="number" id="id_output5" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output6" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output7" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output8" class="number-output" min="1" max="9" readonly></td>
+                </tr>
+                <tr>
+                    <td><input type="number" id="id_output9" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output10" class="number-output" min="1" max="9" readonly></td>
+                    <td class="box-border-right"><input type="number" id="id_output11" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output12" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output13" class="number-output" min="1" max="9" readonly></td>
+                    <td class="box-border-right"><input type="number" id="id_output14" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output15" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output16" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output17" class="number-output" min="1" max="9" readonly></td>
+                </tr>
+                <tr class="box-border-bottom">
+                    <td><input type="number" id="id_output18" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output19" class="number-output" min="1" max="9" readonly></td>
+                    <td class="box-border-right"><input type="number" id="id_output20" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output21" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output22" class="number-output" min="1" max="9" readonly></td>
+                    <td class="box-border-right"><input type="number" id="id_output23" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output24" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output25" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output26" class="number-output" min="1" max="9" readonly></td>
+                </tr>
+                <tr>
+                    <td><input type="number" id="id_output27" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output28" class="number-output" min="1" max="9" readonly></td>
+                    <td class="box-border-right"><input type="number" id="id_output29" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output30" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output31" class="number-output" min="1" max="9" readonly></td>
+                    <td class="box-border-right"><input type="number" id="id_output32" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output33" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output34" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output35" class="number-output" min="1" max="9" readonly></td>
+                </tr>
+                <tr>
+                    <td><input type="number" id="id_output36" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output37" class="number-output" min="1" max="9" readonly></td>
+                    <td class="box-border-right"><input type="number" id="id_output38" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output39" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output40" class="number-output" min="1" max="9" readonly></td>
+                    <td class="box-border-right"><input type="number" id="id_output41" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output42" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output43" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output44" class="number-output" min="1" max="9" readonly></td>
+                </tr>
+                <tr class="box-border-bottom">
+                    <td><input type="number" id="id_output45" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output46" class="number-output" min="1" max="9" readonly></td>
+                    <td class="box-border-right"><input type="number" id="id_output47" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output48" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output49" class="number-output" min="1" max="9" readonly></td>
+                    <td class="box-border-right"><input type="number" id="id_output50" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output51" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output52" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output53" class="number-output" min="1" max="9" readonly></td>
+                </tr>
+                <tr>
+                    <td><input type="number" id="id_output54" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output55" class="number-output" min="1" max="9" readonly></td>
+                    <td class="box-border-right"><input type="number" id="id_output56" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output57" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output58" class="number-output" min="1" max="9" readonly></td>
+                    <td class="box-border-right"><input type="number" id="id_output59" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output60" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output61" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output62" class="number-output" min="1" max="9" readonly></td>
+                </tr>
+                <tr>
+                    <td><input type="number" id="id_output63" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output64" class="number-output" min="1" max="9" readonly></td>
+                    <td class="box-border-right"><input type="number" id="id_output65" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output66" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output67" class="number-output" min="1" max="9" readonly></td>
+                    <td class="box-border-right"><input type="number" id="id_output68" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output69" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output70" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output71" class="number-output" min="1" max="9" readonly></td>
+                </tr>
+                <tr>
+                    <td><input type="number" id="id_output72" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output73" class="number-output" min="1" max="9" readonly></td>
+                    <td class="box-border-right"><input type="number" id="id_output74" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output75" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output76" class="number-output" min="1" max="9" readonly></td>
+                    <td class="box-border-right"><input type="number" id="id_output77" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output78" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output79" class="number-output" min="1" max="9" readonly></td>
+                    <td><input type="number" id="id_output80" class="number-output" min="1" max="9" readonly></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="main-content__output__note" id="id_output-note"></div>
+    </div>
+    </div>
+
+    <h2>参考URL</h2>
+    <div>
+        <ul>
+            <li>ナンプレ京：<a href="https://nanpre.adg5.com/">"ナンプレ京（数独）無料パズルゲーム 20000問以上"</a></li>
+            <li>世界で最も難しい数独2010（Arto Inkala作）：<a href="https://gigazine.net/news/20100822_hardest_sudoku/">"数学のエキスパートが3ヶ月かけて作成した「世界一難しい数独」"（Gigazine）</a></li>
+            <li>世界で最も難しい数独2012（Arto Inkala作）：<a href="https://www.sentohsharyoga.com/ja/puzzle/blog/entry/sudoku_most_difficult">"世界で最も難しい数独"（Puzzle&Programming）</a></li>
+            <li>Hiroshi Watanabeがスパコンで作成した問題：<a href="http://mohsho.image.coocan.jp/WH-Watanabe2013.html">"世界で最も難しい数独に挑戦；その３"（数独・ナンプレのページ）</a></li>
+        </ul>
+    </div>
+    <div class="footer">
+        <div class="footer__about-area">
+            <div class="footer__item"><i class="bi bi-house"></i><a href="https://taketakeyyy.github.io/">Home</a></div>
+            <div class="footer__item"><i class="bi bi-github"></i><a href="https://github.com/taketakeyyy/taketakeyyy.github.io/issues/new" target="_blank" rel="noopener noreferrer">不具合報告</a></div>
+        </div>
+    </div>
+</body>
+</html>

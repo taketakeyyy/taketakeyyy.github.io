@@ -1,13 +1,15 @@
 const path = require("path");
-const WebpackMerge = require("webpack-merge");
+const { merge } = require("webpack-merge");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const src = __dirname + "/src";
 const dist = __dirname + "/docs";
 
 
 module.exports = {
     entry: {  // ビルドの起点となるファイルの指定
-        b64cert_to_carray: src + '/tools/b64cert_to_carray.ts',
-        bincert_to_carray: src + '/tools/bincert_to_carray.ts'
+        "sudoku-solver": src + '/tools/sudoku-solver/ts/sudoku-solver.ts',
+        "b64cert_to_carray": src + '/tools/b64cert_to_carray/ts/b64cert_to_carray.ts',
+        "bincert_to_carray": src + '/tools/bincert_to_carray/ts/bincert_to_carray.ts'
     },
     output: {  // ビルド結果の出力場所
         path: path.join(dist + "/tools"),
@@ -20,6 +22,29 @@ module.exports = {
         // webpack-dev-serverの公開フォルダ
         contentBase: path.join(dist)
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            inject: true,
+            minify: false,
+            chunks: ["sudoku-solver"],  // 使いたいJSのentry名を指定
+            filename: dist + "/tools/sudoku-solver.html",
+            template: src + "/tools/sudoku-solver/sudoku-solver.html"
+        }),
+        new HtmlWebpackPlugin({
+            inject: true,
+            minify: false,
+            chunks: ["b64cert_to_carray"],  // 使いたいJSのentry名を指定
+            filename: dist + "/tools/b64cert_to_carray.html",
+            template: src + "/tools/b64cert_to_carray/b64cert_to_carray.html"
+        }),
+        new HtmlWebpackPlugin({
+            inject: true,
+            minify: false,
+            chunks: ["bincert_to_carray"],  // 使いたいJSのentry名を指定
+            filename: dist + "/tools/bincert_to_carray.html",
+            template: src + "/tools/bincert_to_carray/bincert_to_carray.html"
+        }),
+    ],
     module: {
         rules: [
             {   // 拡張子が.tsで終わるファイルに対して、TypeScriptコンパイラを適用する

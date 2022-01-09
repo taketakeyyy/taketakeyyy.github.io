@@ -1,0 +1,21 @@
+$arrow-color: rgb(38, 119, 78);
+$arrow-size: 10px;
+.right-arrow {
+    // display: inline-block;
+    height: $arrow-size;
+    width: $arrow-size*2;
+    background-color: $arrow-color;
+    position: relative;
+    top: -20px;
+    left: 5px;
+}
+.right-arrow:before {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border: $arrow-size*(1.5) solid transparent;
+    border-left: $arrow-size*(1.5) solid $arrow-color;
+    left: $arrow-size*2;
+    top: - $arrow-size;
+}
