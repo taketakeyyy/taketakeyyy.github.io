@@ -8,6 +8,7 @@ import { grid_sample1, grid_sample2}  from './testgrid/grid_sample';
 import { grid_kyo_q1, grid_kyo_q100 } from './testgrid/grid_kyo';
 import { grid_inkala_2010, grid_inkala_2012 } from "./testgrid/grid_inkala";
 import { grid_wata2013_0, grid_wata2013_03_12, grid_wata2013_03_13, grid_wata2013_03_22 } from "./testgrid/grid_watanabe";
+import { grid_gary } from './testgrid/grid_gary';
 
 /**
  * 入力用の数独gridに数字を入れる
@@ -138,6 +139,9 @@ const change_event_select_problem = async() => {
             break;
         case "wata2013_03_22":
             await fill_out_number_to_input_grid(grid_wata2013_03_22);
+            break;
+        case "gary_2012":
+            await fill_out_number_to_input_grid(grid_gary);
             break;
     }
 };
