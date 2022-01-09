@@ -44,6 +44,14 @@ module.exports = {
             filename: dist + "/tools/bincert_to_carray.html",
             template: src + "/tools/bincert_to_carray/bincert_to_carray.html"
         }),
+        // google-sitemap-verification用ファイル
+        new HtmlWebpackPlugin({
+            inject: true,
+            minify: false,
+            chunks: [""],
+            filename: dist + "/tools/google159ab6b978e19d4e.html",
+            template: src + "/tools/google159ab6b978e19d4e.html"
+        }),
     ],
     module: {
         rules: [
