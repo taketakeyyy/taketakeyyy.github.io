@@ -9,6 +9,7 @@
     "server": "webpack-dev-server --config webpack.dev.js"
   },
   "devDependencies": {
+    "@taketakeyyy/oxgame": "^0.1.0",
     "buffer": "^6.0.3",
     "css-loader": "^6.5.1",
     "html-webpack-plugin": "^5.5.0",

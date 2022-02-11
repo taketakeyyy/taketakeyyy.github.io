@@ -262,6 +262,4 @@ const entry_point = async () => {
     await add_change_event_select_problem();
 }
 
-window.onload = () => {
-    entry_point();
-}
+entry_point();

@@ -7,6 +7,7 @@ const dist = __dirname + "/docs";
 
 module.exports = {
     entry: {  // ビルドの起点となるファイルの指定
+        "oxgame-battle": src + "/tools/oxgame-battle/ts/oxgame-battle.ts",
         "sudoku-solver": src + '/tools/sudoku-solver/ts/sudoku-solver.ts',
         "b64cert_to_carray": src + '/tools/b64cert_to_carray/ts/b64cert_to_carray.ts',
         "bincert_to_carray": src + '/tools/bincert_to_carray/ts/bincert_to_carray.ts'
@@ -23,6 +24,13 @@ module.exports = {
         contentBase: path.join(dist)
     },
     plugins: [
+        new HtmlWebpackPlugin({
+            inject: true,
+            minify: false,
+            chunks: ["oxgame-battle"],  // 使いたいJSのentry名を指定
+            filename: dist + "/tools/oxgame-battle.html",
+            template: src + "/tools/oxgame-battle/oxgame-battle.html"
+        }),
         new HtmlWebpackPlugin({
             inject: true,
             minify: false,
@@ -64,8 +72,11 @@ module.exports = {
             {   // 拡張子.scssに対して、sass-loader等を適用する
                 test: /\.scss/,
                 use: ["style-loader", "css-loader", "sass-loader"]  // 後ろから順に適用される
-            }
+            },
         ]
-    }
+    },
+    experiments: {
+        asyncWebAssembly: true,
+    },
 }
 

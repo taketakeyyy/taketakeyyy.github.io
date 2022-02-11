@@ -1,0 +1,70 @@
+$base-color: #3d3f3e;
+
+body {
+    padding: 3px;
+}
+
+.bi-record {
+    font-size: 64px;
+    color: $base-color;
+}
+
+.bi-x {
+    font-size: 64px;
+    color: $base-color;
+}
+
+.btn-start {
+    margin: 2px;
+}
+
+.title-content {
+    display: flex;
+    justify-content: center;
+}
+
+.setting-content {
+    display: flex;
+    justify-content: center;
+
+    &__radios {
+        display: block;
+    }
+    &__btn-start {
+        display: flex;
+        justify-content: center;
+        &__sub {
+            display: block;
+        }
+    }
+}
+
+.game-text-content {
+    display: flex;
+    justify-content: center;
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+}
+
+.oxgame-content {
+    width: 300px;
+    height: 300px;
+
+    &__row {
+        width: 300px;
+        height: 100px;
+        display: flex;
+    }
+    &__square {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100px;  // 92px;
+        height: 100px;  // 92px;
+        border-collapse: collapse;
+        border: 4px solid $base-color;
+    }
+};
