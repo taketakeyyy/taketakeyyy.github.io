@@ -17,7 +17,7 @@ module.exports = {
         filename: '[name].js'  // [name]は、entryのプロパティ名
     },
     resolve: {  // モジュールとして扱いたいファイルの拡張子を指定する
-        extensions:['.ts','.js']
+        extensions:['.ts','.js','.wasm']
     },
     devServer: {
         // webpack-dev-serverの公開フォルダ
@@ -56,9 +56,23 @@ module.exports = {
         new HtmlWebpackPlugin({
             inject: true,
             minify: false,
-            chunks: [""],
+            chunks: [""],  // JSを使わない場合は空にする
             filename: dist + "/tools/google159ab6b978e19d4e.html",
             template: src + "/tools/google159ab6b978e19d4e.html"
+        }),
+        new HtmlWebpackPlugin({
+            inject: true,
+            minify: false,
+            chunks: [""],  // JSを使わない場合は空にする
+            filename: dist + "/compile_error_face.html",
+            template: src + "/compile_error_face.html"
+        }),
+        new HtmlWebpackPlugin({
+            inject: true,
+            minify: false,
+            chunks: [""],  // JSを使わない場合は空にする
+            filename: dist + "/index.html",
+            template: src + "/index.html"
         }),
     ],
     module: {
