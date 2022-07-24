@@ -50,11 +50,11 @@ body {
 }
 
 .oxgame-content {
-    width: 300px;
+    width: 500px;
     height: 300px;
 
     &__row {
-        width: 300px;
+        width: 500px;
         height: 100px;
         display: flex;
     }
@@ -67,4 +67,28 @@ body {
         border-collapse: collapse;
         border: 4px solid $base-color;
     }
+    &__square-append {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100px;  // 92px;
+        height: 100px;  // 92px;
+        border-collapse: collapse;
+        border: 0px solid $base-color;
+    }
 };
+
+.fadein {
+    animation-name: fadeinAnime;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+}
+@keyframes fadeinAnime {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
