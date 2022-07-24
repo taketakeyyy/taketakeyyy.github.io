@@ -75,9 +75,7 @@ const click_event_square = async (e: Event) => {
     g_grid[h][w].masu = MASU_PLAYER;
 
     // アイコン表示
-    const icon = document.createElement("i");
-    icon.className = "bi bi-record";
-    target.appendChild(icon);
+    put_icon(MASU_PLAYER, target);
 
     // 勝敗判定
     const judge_result = await judge(g_grid);
@@ -90,8 +88,16 @@ const click_event_square = async (e: Event) => {
         text_elem.textContent = "あなたの負けです😞";
     }
     else if (judge_result == JUDGE_RESULT_DRAW) {
-        const text_elem = <HTMLParagraphElement>document.getElementById("id_game-text")!;
-        text_elem.textContent = "引き分けです😐";
+        // 最後に、AIは卑怯な手を使う
+        const is_ok = await do_sneaky_action();
+        if (is_ok) {
+            const text_elem = <HTMLParagraphElement>document.getElementById("id_game-text")!;
+            text_elem.textContent = "あなたの負けです🤘😜🤘";
+        }
+        else {
+            const text_elem = <HTMLParagraphElement>document.getElementById("id_game-text")!;
+            text_elem.textContent = "引き分けです😐";
+        }
     }
     else {
         // AIの行動
@@ -109,9 +115,7 @@ const start_ai_turn = async () => {
     // アイコン表示
     const ai_idx: number = node.h*3 + node.w;
     const target: HTMLDivElement = <HTMLDivElement>document.getElementById("id_square"+ai_idx)!;
-    const icon = document.createElement("i");
-    icon.className = "bi bi-x";
-    target.appendChild(icon);
+    put_icon(MASU_AI, target);
 
     // 勝敗判定
     const judge_result = await judge(g_grid);
@@ -132,6 +136,57 @@ const start_ai_turn = async () => {
         await start_player_turn();
     }
 };
+
+/** マスにアイコンを表示する */
+const put_icon = async (who: number, target: HTMLDivElement) => {
+    if (who === MASU_PLAYER) {
+        const icon = document.createElement("i");
+        icon.className = "bi bi-record";
+        target.appendChild(icon);
+    }
+    else {
+        const icon = document.createElement("i");
+        icon.className = "bi bi-x";
+        target.appendChild(icon);
+    }
+}
+
+/** 卑劣な行為をする */
+const do_sneaky_action = async (): Promise<boolean> => {
+    let is_ok: boolean = false;
+    let target: HTMLDivElement|null = null;
+    if (g_grid[0][0].masu===MASU_AI && g_grid[0][1].masu===MASU_AI) {
+        target = <HTMLDivElement>document.getElementById("id_square9");
+        is_ok = true;
+    }
+    else if (g_grid[1][0].masu===MASU_AI && g_grid[1][1].masu===MASU_AI) {
+        target = <HTMLDivElement>document.getElementById("id_square11");
+        is_ok = true;
+    }
+    else if (g_grid[2][0].masu===MASU_AI && g_grid[2][1].masu===MASU_AI) {
+        target = <HTMLDivElement>document.getElementById("id_square13");
+        is_ok = true;
+    }
+    else if (g_grid[0][2].masu===MASU_AI && g_grid[0][1].masu===MASU_AI) {
+        target = <HTMLDivElement>document.getElementById("id_square10");
+        is_ok = true;
+    }
+    else if (g_grid[1][2].masu===MASU_AI && g_grid[1][1].masu===MASU_AI) {
+        target = <HTMLDivElement>document.getElementById("id_square12");
+        is_ok = true;
+    }
+    else if (g_grid[2][2].masu===MASU_AI && g_grid[2][1].masu===MASU_AI) {
+        target = <HTMLDivElement>document.getElementById("id_square14");
+        is_ok = true;
+    }
+
+    if (is_ok) {
+        target!.style.borderWidth = "4px";
+        target!.classList.add("fadein");
+        put_icon(MASU_AI, target!);
+    }
+    return is_ok;
+}
 
 const start_player_turn = async () => {
     // クリックイベントを追加する
@@ -168,6 +223,20 @@ const initialize_all_state = async () => {
     {
         const text_elem = document.getElementById("id_game-text")!;
         text_elem.textContent = "";
+    }
+
+    // square-appendを初期化する
+    {
+        const targets: HTMLCollectionOf<HTMLDivElement> = <HTMLCollectionOf<HTMLDivElement>>document.getElementsByClassName("oxgame-content__square-append");
+        for(let i=0; i<targets.length; i++) {
+            // CSSの初期化
+            targets[i].style.borderWidth = "0px";
+            targets[i].classList.remove("fadein");
+            // アイコンの初期化
+            while(targets[i].firstChild) {
+                targets[i].removeChild(targets[i].firstChild!);
+            }
+        }
     }
 }
 
