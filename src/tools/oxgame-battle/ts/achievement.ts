@@ -18,20 +18,26 @@ export const show_achivement = async () => {
     // achievement バッジ表示
     const div_ach = document.getElementById("id-achievement-content")!;
     const make_badge_description = () => {
-        if (document.getElementById("id-badge-description") != null) { return; }
-        const badge = document.createElement("div");
-        badge.id = "id-badge-description";
-        badge.classList.add("badge-description");
-        badge.classList.add("baloon-target");
-        const badge_icon = document.createElement("div");
-        badge_icon.classList.add("material-symbols-outlined");
-        badge_icon.innerText = "military_tech";
-        badge.appendChild(badge_icon);
-        const baloon = document.createElement("div");
-        baloon.classList.add("baloon");
-        baloon.innerText = "Achieved " + String(achievements.length) + " of " + String(ACHIEVEMENT_NUM);
-        badge.appendChild(baloon);
-        div_ach.appendChild(badge);
+        if (document.getElementById("id-badge-description") == null) {
+            const badge = document.createElement("div");
+            badge.id = "id-badge-description";
+            badge.classList.add("badge-description");
+            badge.classList.add("baloon-target");
+            const badge_icon = document.createElement("div");
+            badge_icon.classList.add("material-symbols-outlined");
+            badge_icon.innerText = "military_tech";
+            badge.appendChild(badge_icon);
+            const baloon = document.createElement("div");
+            baloon.id = "id-baloon-description";
+            baloon.classList.add("baloon");
+            baloon.innerText = "Achieved " + String(achievements.length) + " of " + String(ACHIEVEMENT_NUM);
+            badge.appendChild(baloon);
+            div_ach.appendChild(badge);
+        }
+        else {
+            const baloon = document.getElementById("id-baloon-description")!;
+            baloon.innerText = "Achieved " + String(achievements.length) + " of " + String(ACHIEVEMENT_NUM);
+        }
     }; make_badge_description();
 
     // 取得したバッジ表示
