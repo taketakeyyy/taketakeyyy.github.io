@@ -1,0 +1,32 @@
+.achievement-container {
+    display: none;
+    width: 100%;
+}
+.achievement-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/** バッジ類 */
+.badge-description {
+    height: 24px;
+    user-select: none;
+    color: rgb(102, 102, 102);
+}
+
+.badge-fox {
+    user-select: none;
+    color: transparent;
+    text-shadow: 0 0 0 #ff5d5d;
+    cursor: default;
+}
+
+.badge-glider {
+    user-select: none;
+    color: transparent;
+    text-shadow: 0 0 0 #5097ff;
+    cursor: default;
+}

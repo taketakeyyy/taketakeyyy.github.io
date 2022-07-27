@@ -1,0 +1,68 @@
+.foxface-transform {
+    animation-name: foxfaceTransform;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    opacity: 1;
+}
+@keyframes foxfaceTransform {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.foxface-fadeout {
+    animation-name: foxfaceFadeout;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    opacity: 1;
+}
+@keyframes foxfaceFadeout {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.foxface-fadein {
+    animation-name: foxfaceFadein;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    cursor: pointer;
+    user-select: none;
+}
+@keyframes foxfaceFadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+$drop_Y_max: 40px;
+$drop_rotate_max: 110deg;
+.foxface-drop {
+    animation-name: foxfaceDrop;
+    animation-delay: 1s;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+    display: inline-block;
+    opacity: 1;
+}
+@keyframes foxfaceDrop {
+    0% {
+        opacity: 1;
+        transform: translate(0px, 0px) rotate(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(0px, $drop_Y_max) rotate($drop_rotate_max);
+    }
+}

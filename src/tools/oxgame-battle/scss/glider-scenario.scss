@@ -1,0 +1,14 @@
+$fill-color: #5097ff;
+
+.fill-black {
+    animation-name: fillblackAnime;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+@keyframes fillblackAnime {
+    0% {
+    }
+    100% {
+        background-color: $fill-color;
+    }
+}

@@ -1,8 +1,17 @@
 import '../scss/oxgame-battle.scss';
 import '../scss/footer.scss';
+import '../scss/fox-scenario.scss';
+import '../scss/glider-scenario.scss';
+import '../scss/modal.scss';
+import '../scss/achievement.scss';
+import '../scss/baloon.scss';
 // const oxgame = import("../../../../node_modules/@taketakeyyy/oxgame/oxgame");
 // import {make_initialized_grid} from "../../../../node_modules/@taketakeyyy/oxgame/oxgame.js";
 import * as oxgame from "../../../../node_modules/@taketakeyyy/oxgame/oxgame";
+import { foxface_transform, init_fox_scenario } from "./fox-scenario";
+import { is_glider, glider_scenario_end, init_glider_scenario } from "./glider-scenario";
+import { show_achivement } from './achievement';
+import { all_delete_cookie } from './cookie';
 
 const JUDGE_RESULT_PLAYER_WIN = 0;
 const JUDGE_RESULT_AI_WIN = 1;
@@ -92,7 +101,8 @@ const click_event_square = async (e: Event) => {
         const is_ok = await do_sneaky_action();
         if (is_ok) {
             const text_elem = <HTMLParagraphElement>document.getElementById("id_game-text")!;
-            text_elem.textContent = "あなたの負けです🤘😜🤘";
+            text_elem.innerHTML = "あなたの負けです🤘<span id=\"foxface\" class=\"foxface-transform\">😜</span>🤘";
+            foxface_transform();
         }
         else {
             const text_elem = <HTMLParagraphElement>document.getElementById("id_game-text")!;
@@ -105,9 +115,34 @@ const click_event_square = async (e: Event) => {
     }
 };
 
+/** 全てのマスが空っぽかどうかを返す */
+const is_all_empty = async (): Promise<boolean> => {
+    for(let h=0; h<3; h++) {
+        for(let w=0; w<3; w++) {
+            if (g_grid[h][w].masu != MASU_EMPTY) { return false; }
+        }
+    }
+    return true;
+}
+
 const start_ai_turn = async () => {
     // どこに置くか決定する
-    const node = oxgame.run_ai_strategy(g_grid, TURN_AI);
+    let node;
+    if (await is_all_empty()) {
+        const r = Math.floor(Math.random() * 9);
+        if (r==0) { node = {h:0, w:0}; }
+        else if (r==1) { node = {h:0, w:1}; }
+        else if (r==2) { node = {h:0, w:2}; }
+        else if (r==3) { node = {h:1, w:0}; }
+        else if (r==4) { node = {h:1, w:1}; }
+        else if (r==5) { node = {h:1, w:2}; }
+        else if (r==6) { node = {h:2, w:0}; }
+        else if (r==7) { node = {h:2, w:1}; }
+        else if (r==8) { node = {h:2, w:2}; }
+    }
+    else {
+        node = oxgame.run_ai_strategy(g_grid, TURN_AI);
+    }
 
     // マスを埋める
     g_grid[node.h][node.w].masu = MASU_AI;
@@ -124,8 +159,15 @@ const start_ai_turn = async () => {
         text_elem.textContent = "あなたの勝ちです😄";
     }
     else if (judge_result == JUDGE_RESULT_AI_WIN) {
-        const text_elem = <HTMLParagraphElement>document.getElementById("id_game-text")!;
-        text_elem.textContent = "あなたの負けです😞";
+        if (await is_glider(g_grid, MASU_AI)) {
+            const text_elem = <HTMLParagraphElement>document.getElementById("id_game-text")!;
+            text_elem.textContent = "あなたの負けです🛫";
+            await glider_scenario_end(g_grid, MASU_AI);
+        }
+        else {
+            const text_elem = <HTMLParagraphElement>document.getElementById("id_game-text")!;
+            text_elem.textContent = "あなたの負けです😞";
+        }
     }
     else if (judge_result == JUDGE_RESULT_DRAW) {
         const text_elem = <HTMLParagraphElement>document.getElementById("id_game-text")!;
@@ -242,6 +284,9 @@ const initialize_all_state = async () => {
 
 const game_start = async () => {
     await initialize_all_state();
+    // シナリオ初期化
+    await init_fox_scenario();
+    await init_glider_scenario();
 
     // ゲームを開始する
     const radio_first_attack = <HTMLInputElement>document.getElementById("id_radio-first-attack")!;
@@ -259,7 +304,9 @@ const add_initial_events = async () => {
 };
 
 const entry_point = async () => {
+    // all_delete_cookie();
     add_initial_events();
+    show_achivement();
 }
 
 entry_point();
