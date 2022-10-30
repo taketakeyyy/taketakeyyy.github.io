@@ -10,7 +10,9 @@ module.exports = {
         "oxgame-battle": src + "/tools/oxgame-battle/ts/oxgame-battle.ts",
         "sudoku-solver": src + '/tools/sudoku-solver/ts/sudoku-solver.ts',
         "b64cert_to_carray": src + '/tools/b64cert_to_carray/ts/b64cert_to_carray.ts',
-        "bincert_to_carray": src + '/tools/bincert_to_carray/ts/bincert_to_carray.ts'
+        "bincert_to_carray": src + '/tools/bincert_to_carray/ts/bincert_to_carray.ts',
+        "bourbon-house-generator": src + '/tools/bourbon-house-generator/ts/bourbon-house-generator.ts',
+        "bourbon-house": src + '/tools/bourbon-house-generator/ts/bourbon-house.ts'
     },
     output: {  // ビルド結果の出力場所
         path: path.join(dist + "/tools"),
@@ -24,6 +26,20 @@ module.exports = {
         contentBase: path.join(dist)
     },
     plugins: [
+        new HtmlWebpackPlugin({
+            inject: true,
+            minify: false,
+            chunks: ["bourbon-house"],  // 使いたいJSのentry名を指定
+            filename: dist + "/tools/bh.html",
+            template: src + "/tools/bourbon-house-generator/bourbon-house.html"
+        }),
+        new HtmlWebpackPlugin({
+            inject: true,
+            minify: false,
+            chunks: ["bourbon-house-generator"],  // 使いたいJSのentry名を指定
+            filename: dist + "/tools/bourbon-house-generator.html",
+            template: src + "/tools/bourbon-house-generator/bourbon-house-generator.html"
+        }),
         new HtmlWebpackPlugin({
             inject: true,
             minify: false,

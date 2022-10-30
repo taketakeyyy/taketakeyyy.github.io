@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bourbon House Generator</title>
+</head>
+<body>
+    <h1>バーボンハウス ジェネレータ</h1>
+    <div>
+        <p>テキストボックスを自由に埋め、「ページ作成」ボタンを押すと、専用のバーボンハウスのページが作成されます。作成されたページのURLをコピーしてお使いください。</p>
+        <ul>
+            <li>文字数制限があります（作成されたページのURL長が2000文字くらい）。</li>
+            <li>AA不要の場合、消せば消えます。</li>
+        </ul>
+        <div>
+            テンプレ：
+            <select id="id-template_select" name="template">
+                <option value="sample1">サンプル1</option>
+                <option value="sample2">サンプル2</option>
+                <option value="sample3">サンプル3</option>
+                <option value="sample4">サンプル4</option>
+            </select>
+        </div>
+    </div>
+    <hr>
+    <div>
+        AA：
+        <input type="radio" name="radio-aa-font" id="id-radio_use_monospace"><label for="id-radio_use_monospace">等幅フォント使用</label>
+        <input type="radio" name="radio-aa-font" id="id-radio_use_none"><label for="id-radio_use_none">フォントそのまま</label>
+    </div>
+    <div class="main-content">
+        <div class="textareaMetrics-container">
+            <div id="id-q100_textareaMetrics" class="textareaMetrics" aria-hidden="true"></div>
+                <textarea id="id-q100"></textarea>
+        </div>
+
+        <p>
+            やあ
+            <input type="text" id="id-q1" minlength="0" maxlength="128" size="10" value=""></input>
+            <span id="id-q1_textMetrics" class="textMetrics" aria-hidden="true"></span>
+        </p>
+        <p>
+            ようこそ、
+            <input type="text" id="id-q2" minlength="0" maxlength="128" size="10" value=""></input>へ。
+            <span id="id-q2_textMetrics" class="textMetrics" aria-hidden="true"></span>
+        </p>
+        <p>
+            この
+            <input type="text" id="id-q3" minlength="0" maxlength="128" size="10" value=""></input>
+            <span id="id-q3_textMetrics" class="textMetrics" aria-hidden="true"></span>
+            はサービスだから、
+            <input type="text" id="id-q4" minlength="0" maxlength="128" size="10" value=""></input>
+            <span id="id-q4_textMetrics" class="textMetrics" aria-hidden="true"></span>
+            落ち着いて欲しい。
+        </p>
+        <p></p>
+        <p>うん、「また」なんだ。済まない。</p>
+        <p>仏の顔もって言うしね、謝って許してもらおうとも思っていない。</p>
+        <p></p>
+        <p>
+            でも、
+            <input type="text" id="id-q5" minlength="0" maxlength="128" size="10" value=""></input>
+            <span id="id-q5_textMetrics" class="textMetrics" aria-hidden="true"></span>
+            とき、君は、きっと言葉では言い表せない
+        </p>
+        <p>「ときめき」みたいなものを感じてくれたと思う。</p>
+        <p>殺伐とした世の中で、そういう気持ちを忘れないで欲しい</p>
+        <p>
+            そう思って、
+            <input type="text" id="id-q6" minlength="0" maxlength="128" size="10" value=""></input>
+            <span id="id-q6_textMetrics" class="textMetrics" aria-hidden="true"></span>
+            。
+        </p>
+        <p></p>
+        <p>
+            じゃあ、
+            <input type="text" id="id-q7" minlength="4" maxlength="128" size="10" value=""></input>
+            <span id="id-q7_textMetrics" class="textMetrics" aria-hidden="true"></span>
+            。
+        </p>
+    </div>
+    <hr>
+    <div>
+        <button id="id-gen-page">ページ作成</button>
+    </div>
+</body>
+</html>
