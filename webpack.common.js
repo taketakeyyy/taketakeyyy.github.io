@@ -1,6 +1,7 @@
 const path = require("path");
 const { merge } = require("webpack-merge");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyFilePlugin = require("copy-webpack-plugin");
 const src = __dirname + "/src";
 const dist = __dirname + "/docs";
 
@@ -12,14 +13,14 @@ module.exports = {
         "b64cert_to_carray": src + '/tools/b64cert_to_carray/ts/b64cert_to_carray.ts',
         "bincert_to_carray": src + '/tools/bincert_to_carray/ts/bincert_to_carray.ts',
         "bourbon-house-generator": src + '/tools/bourbon-house-generator/ts/bourbon-house-generator.ts',
-        "bourbon-house": src + '/tools/bourbon-house-generator/ts/bourbon-house.ts'
+        "bourbon-house": src + '/tools/bourbon-house-generator/ts/bourbon-house.ts',
     },
     output: {  // ビルド結果の出力場所
         path: path.join(dist + "/tools"),
         filename: '[name].js'  // [name]は、entryのプロパティ名
     },
     resolve: {  // モジュールとして扱いたいファイルの拡張子を指定する
-        extensions:['.ts','.js','.wasm']
+        extensions: ['.ts', '.js', '.wasm']
     },
     devServer: {
         // webpack-dev-serverの公開フォルダ
@@ -94,9 +95,9 @@ module.exports = {
     module: {
         rules: [
             {   // 拡張子が.tsで終わるファイルに対して、TypeScriptコンパイラを適用する
-                test:/\.ts$/,
+                test: /\.ts$/,
                 use: {
-                    loader:'ts-loader'
+                    loader: 'ts-loader'
                 }
             },
             {   // 拡張子.scssに対して、sass-loader等を適用する
